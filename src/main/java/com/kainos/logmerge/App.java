@@ -2,6 +2,8 @@ package com.kainos.logmerge;
 
 import java.io.BufferedOutputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Random;
 
 import org.slf4j.Logger;
@@ -31,15 +33,15 @@ public class App
     				String t = "a";
     				t.charAt(6);
     			} catch(Exception e) {
-//    				OutputStream os = new BufferedOutputStream(os);
-    				LOG.error("error D:");
-    				e.printStackTrace();
+    				StringWriter sw = new StringWriter();
+    				PrintWriter pw = new PrintWriter(sw);
+    				e.printStackTrace(pw);
+    				LOG.error(sw.toString());
     			}
     		}
     		try {
-				Thread.sleep(2000L);
+				Thread.sleep(1000L);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     	}
