@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+        <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+               <file>/log/worker.log</file>
+               <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                       <fileNamePattern>/log/worker.%d{yyyy-MM-dd}.log</fileNamePattern>                                <!-- daily rollover -->
+                       <maxHistory>90</maxHistory> <!-- keep 3 months worth of history -->
+               </rollingPolicy>
+
+               <encoder>
+                       <pattern>%date{ISO8601} %marker %X{tenant} %X{test-run} %X{tr-bp} %-5level %logger{36} - %msg%n</pattern>
+               </encoder>
+        </appender>
+        
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+               <encoder>
+                       <pattern>%date{ISO8601} %marker %X{tenant} %X{test-run} %X{tr-bp} %-5level %logger{36} - %msg%n</pattern>
+               </encoder>
+        </appender>
+        
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </root>
+
+</configuration>
