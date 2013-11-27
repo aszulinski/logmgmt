@@ -19,7 +19,7 @@ public class App
     	MDC.put("tr-bp", "TRBP:" + new Integer(new Random().nextInt(3000)));
     	
     	Random generator = new Random();
-    	Boolean i = true;
+    	boolean i = true;
     	while(i) {
     		int rnd = generator.nextInt(100);
     		if(rnd < 70) {
