@@ -39,4 +39,5 @@ if [ ! -d "$PROJECT_DIR" ]; then
   git clone https://github.com/aszulinski/logmgmt.git
 fi
 
+# launching logstash server, you may comment this line if you want only install logstash
 java -jar /opt/logstash/logstash-1.2.2-flatjar.jar agent -f /opt/logmgmt/configs/logstash.conf -- web
