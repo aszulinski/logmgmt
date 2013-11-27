@@ -39,5 +39,8 @@ if [ ! -d "$PROJECT_DIR" ]; then
   git clone https://github.com/aszulinski/logmgmt.git
 fi
 
+openssl req -x509 -newkey rsa:2048 -keyout /etc/ssl/logstash.key -out /etc/ssl/logstash.pub -nodes -days 3650
+chmod 777 -R $LOGSTASH_DIR
+chmod 777 -R $PROJECT_DIR
 # launching logstash server, you may comment this line if you want only install logstash
 java -jar /opt/logstash/logstash-1.2.2-flatjar.jar agent -f /opt/logmgmt/configs/logstash.conf -- web
