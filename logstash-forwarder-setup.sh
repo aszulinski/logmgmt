@@ -3,8 +3,8 @@ echo 'Script takes three parameters needed to retrieve certificate from logstash
 echo '-- Caution -- This script should be run with higher privileges'
 echo 'Logstash-forwarder(lumberjack) installer launched.'
 echo 'Downloading logstash-forwarder repository files.'
-FORWARDER_DIR=/opt/logstash-forwarder/
-PROJECT_DIR=/opt/logmgmt/
+FORWARDER_DIR=/opt/logstash-forwarder
+PROJECT_DIR=/opt/logmgmt
 
 $(which git > /dev/null 2>&1)
 FOUND_GIT=$?
@@ -60,11 +60,11 @@ if [ ! -d "$PROJECT_DIR" ]; then
   git clone https://github.com/aszulinski/logmgmt.git
 fi
 
-scp $1@$2:$3 /etc/ssl/logstash2.pub
+scp $1@$2:$3 /etc/ssl/logstash.pub
 sed -i.bak "s/\".*servers.*/\"servers\":[\"$2:4545\"],/" $PROJECT_DIR/configs/forwarder.conf
 
 #openssl req -x509 -newkey rsa:2048 -keyout /etc/ssl/logstash.key -out /etc/ssl/logstash.pub -nodes -days 3650
 
 # launching logstash-forwarder
-cd $FORWARDER_DIR/bin
-logstash-forwarder -config $PROJECT_DIR/configs/forwarder.conf
+cd $FORWARDER_DIR
+./logstash-forwarder -config $PROJECT_DIR/configs/forwarder.conf
