@@ -66,5 +66,5 @@ sed -i.bak "s/\".*servers.*/\"servers\":[\"$2:4545\"],/" $PROJECT_DIR/configs/fo
 #openssl req -x509 -newkey rsa:2048 -keyout /etc/ssl/logstash.key -out /etc/ssl/logstash.pub -nodes -days 3650
 
 # launching logstash-forwarder
-cd $FORWARDER_DIR
-./logstash-forwarder -config $PROJECT_DIR/configs/forwarder.conf
+# cd $FORWARDER_DIR
+# ./logstash-forwarder -config $PROJECT_DIR/configs/forwarder.conf
