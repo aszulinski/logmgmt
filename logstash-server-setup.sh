@@ -41,5 +41,5 @@ fi
 
 openssl req -x509 -newkey rsa:2048 -keyout /etc/ssl/logstash.key -out /etc/ssl/logstash.pub -nodes -days 3650
 
-# launching logstash server, you may comment this line if you want only install logstash
+# launching logstash server
 # java -jar /opt/logstash/logstash-1.2.2-flatjar.jar agent -f /opt/logmgmt/configs/logstash.conf -- web
