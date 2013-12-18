@@ -58,7 +58,7 @@ fi
 cd $FORWARDER_DIR
 go build
 make deb
-dpkg -i lumberjack_0.3.1_amd64.deb
+dpkg -i logstash-forwarder_0.3.1_amd64.deb
 
 cd /opt/
 if [ ! -d "$PROJECT_DIR" ]; then 
