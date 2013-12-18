@@ -31,7 +31,11 @@ else
 fi
 
 cd /opt/
-#gem install fpm
+apt-get install rubygems
+gem install fpm
+
+apt-get remove golang-go
+apt-get remove golang-stable
 
 $(which go > /dev/null 2>&1)
 FOUND_GO=$?
@@ -52,8 +56,8 @@ fi
 
 cd $FORWARDER_DIR
 go build
-#make deb
-#dpkg -i lumberjack_0.0.30_amd64.deb
+make deb
+dpkg -i lumberjack_0.3.1_amd64.deb
 
 cd /opt/
 if [ ! -d "$PROJECT_DIR" ]; then 
@@ -63,8 +67,8 @@ fi
 scp $1@$2:$3 /etc/ssl/logstash.pub
 sed -i.bak "s/\".*servers.*/\"servers\":[\"$2:4545\"],/" $PROJECT_DIR/configs/forwarder.conf
 
-#openssl req -x509 -newkey rsa:2048 -keyout /etc/ssl/logstash.key -out /etc/ssl/logstash.pub -nodes -days 3650
+cp $PROJECT_DIR/configs/forwarder.conf /etc/logstash-forwarder
+update-rc.d logstash-forwarder defaults
 
-# launching logstash-forwarder
-# cd $FORWARDER_DIR
-# ./logstash-forwarder -config $PROJECT_DIR/configs/forwarder.conf
+# launching logstash-forwarder via service
+# service logstash-forwarder start
