@@ -31,6 +31,7 @@ else
 fi
 
 cd /opt/
+apt-get install make
 apt-get install rubygems
 gem install fpm
 
